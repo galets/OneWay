@@ -1,27 +1,25 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OneWay\Assets\AboutAssets.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="OneWay\MainActivity.cs" Line="33" Column="3" />
+      <File FileName="OneWay\MainActivity.cs" Line="93" Column="41" />
       <File FileName="OneWay\Crypto.cs" Line="35" Column="15" />
-      <File FileName="OneWay\Config.cs" Line="7" Column="791" />
-      <File FileName="OneWay\OpenFileActivity.cs" Line="47" Column="1" />
+      <File FileName="OneWay\Config.cs" Line="6" Column="31" />
+      <File FileName="OneWay\OpenFileActivity.cs" Line="1" Column="1" />
       <File FileName="OneWay\Properties\AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="OneWay\Properties\AndroidManifest.xml" Line="1" Column="1" />
-      <File FileName="OneWay\ConfigureActivity.cs" Line="19" Column="75" />
+      <File FileName="OneWay\ConfigureActivity.cs" Line="52" Column="1" />
       <File FileName="OneWay\Resources\AboutResources.txt" Line="1" Column="1" />
-      <File FileName="OneWay\Resources\Resource.designer.cs" Line="60" Column="3" />
-      <File FileName="OneWay\Resources\menu\MainMenu.xml" Line="3" Column="67" />
+      <File FileName="OneWay\Resources\Resource.designer.cs" Line="1" Column="1" />
+      <File FileName="OneWay\Resources\menu\MainMenu.xml" Line="1" Column="1" />
       <File FileName="OneWay\Resources\values\Strings.xml" Line="1" Column="1" />
       <File FileName="OneWay\Assets\AboutAssets.txt" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="One Way Encryptor" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="AboutAssets.txt" selected="True" />
-            </Node>
+          <Node name="One Way Encryptor" expanded="True" selected="True">
+            <Node name="Assets" expanded="True" />
             <Node name="Properties" expanded="True" />
             <Node name="Resources" expanded="True">
               <Node name="drawable" expanded="True" />
@@ -35,9 +33,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="D:\Files\Projects\2013\OneWay\OneWay\MainActivity.cs" line="40" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.One_220Way_220Encryptor MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="c2068e6b" />

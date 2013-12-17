@@ -40,6 +40,11 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="xcopy &quot;${TargetDir}\com.galets.OneWay-Signed.apk&quot; &quot;${SolutionDir}\Binaries\&quot;" workingdir="${SolutionDir}" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
