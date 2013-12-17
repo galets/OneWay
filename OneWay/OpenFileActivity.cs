@@ -50,7 +50,7 @@ namespace OneWay
 		public override void OnBackPressed()
 		{
 			var dir = new DirectoryInfo(currentPath);
-			if (dir.FullName == startPath)
+			if (dir.FullName == Root)
 			{
 				base.OnBackPressed();
 			}

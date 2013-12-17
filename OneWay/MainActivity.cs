@@ -8,34 +8,98 @@ using System.Security.Cryptography;
 using System.Threading;
 using Android.Util;
 using Android.Media;
+using Android.Views;
 
 namespace OneWay
 {
 	[Activity(Label = "OneWay", MainLauncher = true)]
 	public class MainActivity : Activity
 	{
+		const int REQUEST_BROWSEFILE = 23;
+		const int REQUEST_CONFIGURE = 24;
+
 		Button cmdSelectFile { get { return FindViewById<Button>(Resource.Id.cmdSelectFile); } }
-
 		TextView txtStatus { get { return FindViewById<TextView>(Resource.Id.txtStatus); } }
-
 		Button cmdEncryptFile { get { return FindViewById<Button>(Resource.Id.cmdEncryptFile); } }
 
 		string fileToEncrypt;
+		Config configuration;
 
 		protected override void OnCreate(Bundle savedInstance)
 		{
 			base.OnCreate(savedInstance);
 			SetContentView(Resource.Layout.Main);
 
+			var prefs = GetPreferences(FileCreationMode.Private);
+			configuration = new Config()
+			{
+				DefaultFolder = prefs.GetString("DefaultFolder", Android.OS.Environment.ExternalStorageDirectory.AbsolutePath),
+				EncryptionKey = prefs.GetString("EncryptionKey", ""),
+			};
+
 			cmdSelectFile.Click += cmdSelectFile_Click;
 			cmdEncryptFile.Click += cmdEncryptFile_Click;
+		}
+
+		public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
+		{
+			MenuInflater.Inflate(Resource.Menu.MainMenu, menu);
+			return true;
+		}
+
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			switch (item.ItemId)
+			{
+				case Resource.Id.menuConfigure:
+					Configure();
+					break;
+			}
+			return base.OnOptionsItemSelected(item);
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+
+			if (string.IsNullOrEmpty(configuration.EncryptionKey))
+			{
+				Configure();
+			}
+		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			if (requestCode == REQUEST_BROWSEFILE && resultCode == Result.Ok)
+			{
+				fileToEncrypt = data.GetStringExtra(OpenFileActivity.ResultPath);
+				txtStatus.Text = fileToEncrypt;
+				cmdEncryptFile.Visibility = Android.Views.ViewStates.Visible;
+			}
+
+			if (requestCode == REQUEST_CONFIGURE && resultCode == Result.Ok)
+			{
+				var key = data.GetStringExtra(ConfigureActivity.Key);
+				if (!Crypto.IsValidKey(key))
+				{
+					Toast.MakeText(this, "The key submitted is not valid", ToastLength.Long).Show();
+					return;
+				}
+
+				configuration.EncryptionKey = key;
+
+				var prefs = GetPreferences(FileCreationMode.Private);
+				var prefsEditor = prefs.Edit();
+				prefsEditor.PutString("EncryptionKey", configuration.EncryptionKey);
+				prefsEditor.Commit();
+			}
 		}
 
 		void cmdSelectFile_Click(object sender, EventArgs e)
 		{
 			var openFileActivity = new Intent(this, typeof(OpenFileActivity));
-			openFileActivity.PutExtra(OpenFileActivity.StartPath, Config.Instance.DefaultFolder);
-			StartActivityForResult(openFileActivity, 23);
+			openFileActivity.PutExtra(OpenFileActivity.StartPath, configuration.DefaultFolder);
+			StartActivityForResult(openFileActivity, REQUEST_BROWSEFILE);
 		}
 
 		void cmdEncryptFile_Click(object sender, EventArgs e)
@@ -75,9 +139,8 @@ namespace OneWay
 
 						using (var input = fileInfoInput.OpenRead())
 						using (var output = File.OpenWrite(outputFileName))
+						using (var alg = Crypto.CreateRsaProvider(configuration.EncryptionKey))
 						{
-							var alg = new RSACryptoServiceProvider(4096);
-							alg.FromXmlString(Config.Instance.EncryptionKey);
 							Crypto.Encrypt(input, output, alg);
 						}
 
@@ -125,19 +188,12 @@ namespace OneWay
 			t.Start();
 		}
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		void Configure()
 		{
-			if (resultCode == Result.Ok)
-			{
-				fileToEncrypt = data.GetStringExtra(OpenFileActivity.ResultPath);
-				txtStatus.Text = fileToEncrypt;
-				cmdEncryptFile.Visibility = Android.Views.ViewStates.Visible;
-			}
-			else
-			{
-				txtStatus.Text = string.Format("Result code is {0}", resultCode);
-			}
-		}
+			var configureActivity = new Intent(this, typeof(ConfigureActivity));
+			configureActivity.PutExtra(ConfigureActivity.Key, configuration.EncryptionKey);
+			StartActivityForResult(configureActivity, REQUEST_CONFIGURE);
+		}	
 	}
 }
 

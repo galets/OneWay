@@ -27,7 +27,33 @@ namespace OneWay
 
             return bytes;
         }
-		
+
+		public static RSACryptoServiceProvider CreateRsaProvider(string key)
+		{
+			var alg = new RSACryptoServiceProvider(4096);
+			alg.FromXmlString(key);
+			return alg;
+		}
+
+		public static bool IsValidKey(string key)
+		{
+			if (string.IsNullOrWhiteSpace(key))
+			{
+				return false;
+			}
+
+			try
+			{
+				using (CreateRsaProvider(key)) 
+				{
+					return true;
+				}
+			}
+			catch
+			{
+				return false;
+			}
+		}
 
 		public static void Encrypt(Stream input, Stream output, RSACryptoServiceProvider asymmetricAlg)
 		{

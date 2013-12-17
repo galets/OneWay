@@ -54,6 +54,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="OpenFileActivity.cs" />
+    <Compile Include="ConfigureActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -64,8 +65,13 @@
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
-    <AndroidResource Include="Resources\layout\OpenFileLayout.xml" />
-    <AndroidResource Include="Resources\layout\OpenFileRowLayout.xml" />
+    <AndroidResource Include="Resources\menu\MainMenu.xml" />
+    <AndroidResource Include="Resources\layout\OpenFileLayout.axml" />
+    <AndroidResource Include="Resources\layout\OpenFileRowLayout.axml" />
+    <AndroidResource Include="Resources\layout\ConfigureLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\menu\" />
+  </ItemGroup>
 </Project>
