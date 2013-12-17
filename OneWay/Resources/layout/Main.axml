@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="all"
+        android:clickable="true"
+        android:layout_margin="10dp"
+        android:text="This application will encrypt the file using asymmetric algorithm and remove original copy. It will be impossible to decrypt the file from device. You will have to have private key in order to perform decryption. For more information, visit AsymmetricCrypt project at https://github.com/galets/AsymmetricCrypt" />
+    <Button
+        android:id="@+id/cmdSelectFile"
+        android:text="Select file"
+        android:layout_margin="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="" />
+    <Button
+        android:id="@+id/cmdEncryptFile"
+        android:text="Encrypt file"
+        android:visibility="invisible"
+        android:layout_margin="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
