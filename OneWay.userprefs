@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="LICENSE-2.0">
     <Files>
       <File FileName="OneWay\MainActivity.cs" Line="93" Column="41" />
       <File FileName="OneWay\Crypto.cs" Line="35" Column="15" />
@@ -14,19 +14,14 @@
       <File FileName="OneWay\Resources\menu\MainMenu.xml" Line="1" Column="1" />
       <File FileName="OneWay\Resources\values\Strings.xml" Line="1" Column="1" />
       <File FileName="OneWay\Assets\AboutAssets.txt" Line="1" Column="1" />
+      <File FileName="LICENSE-2.0" Line="1" Column="1" />
+      <File FileName="README.md" Line="17" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="One Way Encryptor" expanded="True" selected="True">
-            <Node name="Assets" expanded="True" />
-            <Node name="Properties" expanded="True" />
-            <Node name="Resources" expanded="True">
-              <Node name="drawable" expanded="True" />
-              <Node name="layout" expanded="True" />
-              <Node name="menu" expanded="True" />
-              <Node name="values" expanded="True" />
-            </Node>
+          <Node name="Solution Items" expanded="True">
+            <Node name="D:\Files\Projects\2013\OneWay\LICENSE-2.0" selected="True" />
           </Node>
         </State>
       </Pad>

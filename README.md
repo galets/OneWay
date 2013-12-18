@@ -14,3 +14,12 @@ This tool is used to encrypt files on user device in such way that it cannot be 
 gets to know the private key. Therefore, none of the files encrypted using the OneWay application could 
 possibly be decrypted using only information on device.
 
+
+Usage:
+------
+
+Use AsymmetricCrypt (https://github.com/galets/AsymmetricCrypt) to generate public/private keypair. Store
+private key safely. Upload public key to device using copy/paste or by generating QR code
+
+Files encrypted with OneWay could only be decrypted by AsymmetricCrypt using private key
+
